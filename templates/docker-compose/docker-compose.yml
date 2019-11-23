@@ -1,22 +1,26 @@
-version: '2'
+version: '3'
 services:
   namesrv:
     image: rocketmqinc/rocketmq:4.5.2
     container_name: rmqnamesrv
     ports:
       - 9876:9876
+    environment:
+      - JAVA_OPTS=-Duser.home=/opt
+      - JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m
     volumes:
       - ./data/namesrv/logs:/home/rocketmq/logs
     command: sh mqnamesrv
     networks:
       rocketmq:
-        ipv4_address: 192.19.0.1
+        aliases:
+          - rmqnamesrv
 
   broker-a:
     image: rocketmqinc/rocketmq:4.5.2
     container_name: rmqbroker-a
-    links:
-      - namesrv
+    depends_on:
+      - rmqnamesrv
     ports:
       - 10909:10909
       - 10911:10911
@@ -32,13 +36,14 @@ services:
     command: sh mqbroker -c ../conf/broker-a.conf
     networks:
       rocketmq:
-        ipv4_address: 192.19.0.2
+        aliases:
+          - rmqbroker-a
 
   broker-b:
     image: rocketmqinc/rocketmq:4.5.2
     container_name: rmqbroker-b
-    links:
-      - namesrv
+    depends_on:
+      - rmqnamesrv
     ports:
       - 20909:10909
       - 20911:10911
@@ -54,13 +59,14 @@ services:
     command: sh mqbroker -c ../conf/broker-b.conf
     networks:
       rocketmq:
-        ipv4_address: 192.19.0.3
+        aliases:
+          - rmqbroker-b
 
   broker-a-s:
     image: rocketmqinc/rocketmq:4.5.2
     container_name: rmqbroker-a-s
-    links:
-      - namesrv
+    depends_on:
+      - rmqnamesrv
     ports:
       - 10909:10909
       - 10911:10911
@@ -76,13 +82,14 @@ services:
     command: sh mqbroker -c ../conf/broker-a-s.conf
     networks:
       rocketmq:
-        ipv4_address: 192.19.0.4
+        aliases:
+          - rmqbroker-a-s
 
   broker-b-s:
     image: rocketmqinc/rocketmq:4.5.2
     container_name: rmqbroker-b-s
-    links:
-      - namesrv
+    depends_on:
+      - rmqnamesrv
     ports:
       - 20909:10909
       - 20911:10911
@@ -98,13 +105,14 @@ services:
     command: sh mqbroker -c ../conf/broker-b-s.conf
     networks:
       rocketmq:
-        ipv4_address: 192.19.0.5
+        aliases:
+          - rmqbroker-b-s
 
   rocketmq-console:
     image: styletang/rocketmq-console-ng
     container_name: rocketmq-console-ng
-    links:
-      - namesrv
+    depends_on:
+      - rmqnamesrv
     ports:
       - 8090:8080
     environment:
@@ -112,12 +120,10 @@ services:
     command: sh -c java $JAVA_OPTS -jar /app.jar
     networks:
       rocketmq:
-        ipv4_address: 192.19.0.6
+        aliases:
+          - rocketmq-console-ng
 
 networks:
   rocketmq:
+    name: rocketmq
     driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 192.19.0.0/24
