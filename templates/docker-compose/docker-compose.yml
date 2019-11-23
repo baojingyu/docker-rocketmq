@@ -14,7 +14,7 @@ services:
     networks:
       rocketmq:
         ipv4_address: 172.23.0.2
-      aliases:
+        aliases:
           - namesrv
 
   broker-a:
@@ -38,7 +38,7 @@ services:
     networks:
       rocketmq:
         ipv4_address: 172.23.0.3
-      aliases:
+        aliases:
           - broker-a
 
   broker-b:
@@ -62,8 +62,8 @@ services:
     networks:
       rocketmq:
         ipv4_address: 172.23.0.4
-      aliases:
-          - broker-b
+        aliases:
+        - broker-b
 
   broker-a-s:
     image: rocketmqinc/rocketmq:4.5.2
@@ -86,8 +86,8 @@ services:
     networks:
       rocketmq:
         ipv4_address: 172.23.0.5
-      aliases:
-          - broker-a-s
+        aliases:
+        - broker-a-s
 
   broker-b-s:
     image: rocketmqinc/rocketmq:4.5.2
@@ -110,8 +110,8 @@ services:
     networks:
       rocketmq:
         ipv4_address: 172.23.0.6
-      aliases:
-          - broker-b-s
+        aliases:
+        - broker-b-s
 
   rocketmq-console:
     image: styletang/rocketmq-console-ng
@@ -126,8 +126,8 @@ services:
     networks:
       rocketmq:
         ipv4_address: 172.23.0.7
-      aliases:
-          - rocketmq-console
+        aliases:
+        - rocketmq-console
 
 networks:
   rocketmq:
