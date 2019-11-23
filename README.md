@@ -166,7 +166,7 @@ services:
       - ./data/broker/conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf
     #command: sh mqbroker -n namesrv:9876
     command: sh mqbroker -n namesrv:9876 -c ../conf/broker.conf
-    depends_on:
+    links:
       - namesrv
 
 ```

@@ -6,7 +6,8 @@ services:
     ports:
       - 9876:9876
     environment:
-      JAVA_OPT_EXT: "-Duser.home=/opt -Xms128m -Xmx128m -Xmn128m"
+      JAVA_OPTS: "-Duser.home=/opt"
+      JAVA_OPT_EXT: "-Xms128m -Xmx128m -Xmn128m"
     volumes:
       - ./data/namesrv/logs:/home/rocketmq/logs
     command: sh mqnamesrv
@@ -18,7 +19,7 @@ services:
   broker-a:
     image: rocketmqinc/rocketmq:4.5.2
     container_name: rmqbroker-a
-    depends_on:
+    links:
       - namesrv
     ports:
       - 10909:10909
@@ -26,7 +27,8 @@ services:
       - 10912:10912
     environment:
       NAMESRV_ADDR: "namesrv:9876"
-      JAVA_OPT_EXT: "-Duser.home=/opt -Xms128m -Xmx128m -Xmn128m"
+      JAVA_OPTS: "-Duser.home=/opt"
+      JAVA_OPT_EXT: "-Xms128m -Xmx128m -Xmn128m"
     volumes:
       - ./data1/broker/logs:/home/rocketmq/logs
       - ./data1/broker/store:/home/rocketmq/store
@@ -40,7 +42,7 @@ services:
   broker-b:
     image: rocketmqinc/rocketmq:4.5.2
     container_name: rmqbroker-b
-    depends_on:
+    links:
       - namesrv
     ports:
       - 20909:10909
@@ -48,8 +50,9 @@ services:
       - 20912:10912
     environment:
       NAMESRV_ADDR: "namesrv:9876"
-      JAVA_OPT_EXT: "-Duser.home=/opt -Xms128m -Xmx128m -Xmn128m"
-    volumes:
+      JAVA_OPTS: "-Duser.home=/opt"
+      JAVA_OPT_EXT: "-Xms128m -Xmx128m -Xmn128m"
+      volumes:
       - ./data2/broker/logs:/home/rocketmq/logs
       - ./data2/broker/store:/home/rocketmq/store
       - ./data2/broker/conf/broker-b.conf:/home/rocketmq/rocketmq-4.5.2/conf/broker-b.conf
@@ -62,7 +65,7 @@ services:
   broker-a-s:
     image: rocketmqinc/rocketmq:4.5.2
     container_name: rmqbroker-a-s
-    depends_on:
+    links:
       - namesrv
     ports:
       - 30909:10909
@@ -70,8 +73,9 @@ services:
       - 30912:10912
     environment:
       NAMESRV_ADDR: "namesrv:9876"
-      JAVA_OPT_EXT: "-Duser.home=/opt -Xms128m -Xmx128m -Xmn128m"
-    volumes:
+      JAVA_OPTS: "-Duser.home=/opt"
+      JAVA_OPT_EXT: "-Xms128m -Xmx128m -Xmn128m"
+      volumes:
       - ./data3/broker/logs:/home/rocketmq/logs
       - ./data3/broker/store:/home/rocketmq/store
       - ./data3/broker/conf/broker-a-s.conf:/home/rocketmq/rocketmq-4.5.2/conf/broker-a-s.conf
@@ -84,7 +88,7 @@ services:
   broker-b-s:
     image: rocketmqinc/rocketmq:4.5.2
     container_name: rmqbroker-b-s
-    depends_on:
+    links:
       - namesrv
     ports:
       - 40909:10909
@@ -92,8 +96,9 @@ services:
       - 40912:10912
     environment:
       NAMESRV_ADDR: "namesrv:9876"
-      JAVA_OPT_EXT: "-Duser.home=/opt -Xms128m -Xmx128m -Xmn128m"
-    volumes:
+      JAVA_OPTS: "-Duser.home=/opt"
+      JAVA_OPT_EXT: "-Xms128m -Xmx128m -Xmn128m"
+      volumes:
       - ./data4/broker/logs:/home/rocketmq/logs
       - ./data4/broker/store:/home/rocketmq/store
       - ./data4/broker/conf/broker-b-s.conf:/home/rocketmq/rocketmq-4.5.2/conf/broker-b-s.conf
@@ -106,12 +111,12 @@ services:
   rocketmq-console:
     image: styletang/rocketmq-console-ng
     container_name: rocketmq-console-ng
-    depends_on:
+    links:
       - namesrv
     ports:
       - 8090:8080
     environment:
-      JAVA_OPT_EXT: "-Drocketmq.namesrv.addr=namesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
+      JAVA_OPTS: "-Drocketmq.namesrv.addr=namesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
     command: sh -c java $JAVA_OPTS -jar /app.jar
     networks:
       rocketmq:
