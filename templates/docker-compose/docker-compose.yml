@@ -3,12 +3,6 @@ services:
   namesrv:
     image: rocketmqinc/rocketmq:4.5.2
     container_name: rmqnamesrv
-    links:
-      - broker-a
-      - broker-b
-      - broker-a-s
-      - broker-b-s
-      - rocketmq-console
     ports:
       - 9876:9876
     volumes:
