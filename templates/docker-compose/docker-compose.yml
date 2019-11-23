@@ -13,7 +13,8 @@ services:
     command: sh mqnamesrv
     networks:
       rocketmq:
-        aliases:
+        ipv4_address: 172.23.0.2
+      aliases:
           - namesrv
 
   broker-a:
@@ -36,7 +37,8 @@ services:
     command: sh mqbroker -c ../conf/broker-a.conf
     networks:
       rocketmq:
-        aliases:
+        ipv4_address: 172.23.0.3
+      aliases:
           - broker-a
 
   broker-b:
@@ -59,7 +61,8 @@ services:
     command: sh mqbroker -c ../conf/broker-b.conf
     networks:
       rocketmq:
-        aliases:
+        ipv4_address: 172.23.0.4
+      aliases:
           - broker-b
 
   broker-a-s:
@@ -82,7 +85,8 @@ services:
     command: sh mqbroker -c ../conf/broker-a-s.conf
     networks:
       rocketmq:
-        aliases:
+        ipv4_address: 172.23.0.5
+      aliases:
           - broker-a-s
 
   broker-b-s:
@@ -105,7 +109,8 @@ services:
     command: sh mqbroker -c ../conf/broker-b-s.conf
     networks:
       rocketmq:
-        aliases:
+        ipv4_address: 172.23.0.6
+      aliases:
           - broker-b-s
 
   rocketmq-console:
@@ -120,9 +125,14 @@ services:
     command: sh -c java $JAVA_OPTS -jar /app.jar
     networks:
       rocketmq:
-        aliases:
+        ipv4_address: 172.23.0.7
+      aliases:
           - rocketmq-console
 
 networks:
   rocketmq:
     driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.23.0.0/16
