@@ -52,7 +52,7 @@ services:
       NAMESRV_ADDR: "namesrv:9876"
       JAVA_OPTS: "-Duser.home=/opt"
       JAVA_OPT_EXT: "-Xms128m -Xmx128m -Xmn128m"
-      volumes:
+    volumes:
       - ./data2/broker/logs:/home/rocketmq/logs
       - ./data2/broker/store:/home/rocketmq/store
       - ./data2/broker/conf/broker-b.conf:/home/rocketmq/rocketmq-4.5.2/conf/broker-b.conf
@@ -75,7 +75,7 @@ services:
       NAMESRV_ADDR: "namesrv:9876"
       JAVA_OPTS: "-Duser.home=/opt"
       JAVA_OPT_EXT: "-Xms128m -Xmx128m -Xmn128m"
-      volumes:
+    volumes:
       - ./data3/broker/logs:/home/rocketmq/logs
       - ./data3/broker/store:/home/rocketmq/store
       - ./data3/broker/conf/broker-a-s.conf:/home/rocketmq/rocketmq-4.5.2/conf/broker-a-s.conf
@@ -98,7 +98,7 @@ services:
       NAMESRV_ADDR: "namesrv:9876"
       JAVA_OPTS: "-Duser.home=/opt"
       JAVA_OPT_EXT: "-Xms128m -Xmx128m -Xmn128m"
-      volumes:
+    volumes:
       - ./data4/broker/logs:/home/rocketmq/logs
       - ./data4/broker/store:/home/rocketmq/store
       - ./data4/broker/conf/broker-b-s.conf:/home/rocketmq/rocketmq-4.5.2/conf/broker-b-s.conf
