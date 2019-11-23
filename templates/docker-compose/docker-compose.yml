@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 services:
   namesrv:
     image: rocketmqinc/rocketmq:4.5.2
@@ -14,13 +14,13 @@ services:
     networks:
       rocketmq:
         aliases:
-          - rmqnamesrv
+          - namesrv
 
   broker-a:
     image: rocketmqinc/rocketmq:4.5.2
     container_name: rmqbroker-a
     depends_on:
-      - rmqnamesrv
+      - namesrv
     ports:
       - 10909:10909
       - 10911:10911
@@ -37,13 +37,13 @@ services:
     networks:
       rocketmq:
         aliases:
-          - rmqbroker-a
+          - broker-a
 
   broker-b:
     image: rocketmqinc/rocketmq:4.5.2
     container_name: rmqbroker-b
     depends_on:
-      - rmqnamesrv
+      - namesrv
     ports:
       - 20909:10909
       - 20911:10911
@@ -60,13 +60,13 @@ services:
     networks:
       rocketmq:
         aliases:
-          - rmqbroker-b
+          - broker-b
 
   broker-a-s:
     image: rocketmqinc/rocketmq:4.5.2
     container_name: rmqbroker-a-s
     depends_on:
-      - rmqnamesrv
+      - namesrv
     ports:
       - 10909:10909
       - 10911:10911
@@ -83,13 +83,13 @@ services:
     networks:
       rocketmq:
         aliases:
-          - rmqbroker-a-s
+          - broker-a-s
 
   broker-b-s:
     image: rocketmqinc/rocketmq:4.5.2
     container_name: rmqbroker-b-s
     depends_on:
-      - rmqnamesrv
+      - namesrv
     ports:
       - 20909:10909
       - 20911:10911
@@ -106,13 +106,13 @@ services:
     networks:
       rocketmq:
         aliases:
-          - rmqbroker-b-s
+          - broker-b-s
 
   rocketmq-console:
     image: styletang/rocketmq-console-ng
     container_name: rocketmq-console-ng
     depends_on:
-      - rmqnamesrv
+      - namesrv
     ports:
       - 8090:8080
     environment:
@@ -121,7 +121,7 @@ services:
     networks:
       rocketmq:
         aliases:
-          - rocketmq-console-ng
+          - rocketmq-console
 
 networks:
   rocketmq:
