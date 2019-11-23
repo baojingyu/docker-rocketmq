@@ -6,8 +6,7 @@ services:
     ports:
       - 9876:9876
     environment:
-      - JAVA_OPTS=-Duser.home=/opt
-      - JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m
+      JAVA_OPT_EXT: "-Duser.home=/opt -Xms128m -Xmx128m -Xmn128m"
     volumes:
       - ./data/namesrv/logs:/home/rocketmq/logs
     command: sh mqnamesrv
@@ -26,9 +25,8 @@ services:
       - 10911:10911
       - 10912:10912
     environment:
-      - NAMESRV_ADDR=namesrv:9876
-      - JAVA_OPTS=-Duser.home=/opt
-      - JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m
+      NAMESRV_ADDR: "namesrv:9876"
+      JAVA_OPT_EXT: "-Duser.home=/opt -Xms128m -Xmx128m -Xmn128m"
     volumes:
       - ./data1/broker/logs:/home/rocketmq/logs
       - ./data1/broker/store:/home/rocketmq/store
@@ -49,9 +47,8 @@ services:
       - 20911:10911
       - 20912:10912
     environment:
-      - NAMESRV_ADDR=namesrv:9876
-      - JAVA_OPTS=-Duser.home=/opt
-      - JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m
+      NAMESRV_ADDR: "namesrv:9876"
+      JAVA_OPT_EXT: "-Duser.home=/opt -Xms128m -Xmx128m -Xmn128m"
     volumes:
       - ./data2/broker/logs:/home/rocketmq/logs
       - ./data2/broker/store:/home/rocketmq/store
@@ -72,9 +69,8 @@ services:
       - 30911:10911
       - 30912:10912
     environment:
-      - NAMESRV_ADDR=namesrv:9876
-      - JAVA_OPTS=-Duser.home=/opt
-      - JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m
+      NAMESRV_ADDR: "namesrv:9876"
+      JAVA_OPT_EXT: "-Duser.home=/opt -Xms128m -Xmx128m -Xmn128m"
     volumes:
       - ./data3/broker/logs:/home/rocketmq/logs
       - ./data3/broker/store:/home/rocketmq/store
@@ -95,9 +91,8 @@ services:
       - 40911:10911
       - 40912:10912
     environment:
-      - NAMESRV_ADDR=namesrv:9876
-      - JAVA_OPTS=-Duser.home=/opt
-      - JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m
+      NAMESRV_ADDR: "namesrv:9876"
+      JAVA_OPT_EXT: "-Duser.home=/opt -Xms128m -Xmx128m -Xmn128m"
     volumes:
       - ./data4/broker/logs:/home/rocketmq/logs
       - ./data4/broker/store:/home/rocketmq/store
@@ -116,7 +111,7 @@ services:
     ports:
       - 8090:8080
     environment:
-      - JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false
+      JAVA_OPT_EXT: "-Drocketmq.namesrv.addr=namesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
     command: sh -c java $JAVA_OPTS -jar /app.jar
     networks:
       rocketmq:
