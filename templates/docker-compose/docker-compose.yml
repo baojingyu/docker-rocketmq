@@ -110,8 +110,8 @@ services:
     ports:
       - 8090:8080
     environment:
-      - JAVA_OPT=-Drocketmq.namesrv.addr=namesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false
-    command: sh -c java $JAVA_OPT -jar /app.jar
+      JAVA_OPTS: "-Drocketmq.namesrv.addr=172.16.218.144:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
+    command: sh -c java JAVA_OPTS -jar /app.jar
     networks:
       rocketmq:
         ipv4_address: 172.23.0.7
