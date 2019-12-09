@@ -1,7 +1,7 @@
 version: '3'
 services:
   namesrv:
-    image: rocketmqinc/rocketmq:4.5.2
+    image: rocketmqinc/rocketmq:4.6.0
     container_name: rmqnamesrv
     ports:
       - 9876:9876
@@ -15,7 +15,7 @@ services:
           - namesrv
 
   broker-a:
-    image: rocketmqinc/rocketmq:4.5.2
+    image: rocketmqinc/rocketmq:4.6.0
     container_name: rmqbroker-a
     links:
       - namesrv
@@ -37,7 +37,7 @@ services:
           - broker-a
 
   broker-b:
-    image: rocketmqinc/rocketmq:4.5.2
+    image: rocketmqinc/rocketmq:4.6.0
     container_name: rmqbroker-b
     links:
       - namesrv
@@ -59,7 +59,7 @@ services:
         - broker-b
 
   broker-a-s:
-    image: rocketmqinc/rocketmq:4.5.2
+    image: rocketmqinc/rocketmq:4.6.0
     container_name: rmqbroker-a-s
     links:
       - namesrv
@@ -81,7 +81,7 @@ services:
         - broker-a-s
 
   broker-b-s:
-    image: rocketmqinc/rocketmq:4.5.2
+    image: rocketmqinc/rocketmq:4.6.0
     container_name: rmqbroker-b-s
     links:
       - namesrv
