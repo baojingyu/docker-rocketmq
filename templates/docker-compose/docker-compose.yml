@@ -6,7 +6,7 @@ services:
     ports:
       - 9876:9876
     environment:
-      - JAVA_OPT=${JAVA_OPT} -server -Xms128m -Xmx128m -Xmn128m
+      - JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m -Duser.home=/opt
     volumes:
       - ./data/namesrv/logs:/home/rocketmq/logs
     command: sh mqnamesrv
@@ -27,7 +27,7 @@ services:
       - 10912:10912
     environment:
       - NAMESRV_ADDR=namesrv:9876
-      - JAVA_OPT=${JAVA_OPT} -server -Xms128m -Xmx128m -Xmn128m
+      - JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m -Duser.home=/opt
     volumes:
       - ./data1/broker/logs:/home/rocketmq/logs
       - ./data1/broker/store:/home/rocketmq/store
@@ -50,7 +50,7 @@ services:
       - 20912:10912
     environment:
       - NAMESRV_ADDR=namesrv:9876
-      - JAVA_OPT=${JAVA_OPT} -server -Xms128m -Xmx128m -Xmn128m
+      - JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m -Duser.home=/opt
     volumes:
       - ./data2/broker/logs:/home/rocketmq/logs
       - ./data2/broker/store:/home/rocketmq/store
@@ -73,7 +73,7 @@ services:
       - 30912:10912
     environment:
       - NAMESRV_ADDR=namesrv:9876
-      - JAVA_OPT=${JAVA_OPT} -server -Xms128m -Xmx128m -Xmn128m
+      - JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m -Duser.home=/opt
     volumes:
       - ./data3/broker/logs:/home/rocketmq/logs
       - ./data3/broker/store:/home/rocketmq/store
@@ -96,7 +96,7 @@ services:
       - 40912:10912
     environment:
       - NAMESRV_ADDR=namesrv:9876
-      - JAVA_OPT=${JAVA_OPT} -server -Xms128m -Xmx128m -Xmn128m
+      - JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m -Duser.home=/opt
     volumes:
       - ./data4/broker/logs:/home/rocketmq/logs
       - ./data4/broker/store:/home/rocketmq/store
