@@ -125,10 +125,14 @@ calculate_heap_sizes()
 calculate_heap_sizes
 
 # Dynamically calculate parameters, for reference.
-Xms=$MAX_HEAP_SIZE
-Xmx=$MAX_HEAP_SIZE
-Xmn=$HEAP_NEWSIZE
-MaxDirectMemorySize=$MAX_HEAP_SIZE
+#Xms=$MAX_HEAP_SIZE
+#Xmx=$MAX_HEAP_SIZE
+#Xmn=$HEAP_NEWSIZE
+#MaxDirectMemorySize=$MAX_HEAP_SIZE
+Xms=128m
+Xmx=128m
+Xmn=128m
+MaxDirectMemorySize=128m
 # Set for `JAVA_OPT`.
 JAVA_OPT="${JAVA_OPT} -server -Xms${Xms} -Xmx${Xmx} -Xmn${Xmn}"
 JAVA_OPT="${JAVA_OPT} -XX:+UseG1GC -XX:G1HeapRegionSize=16m -XX:G1ReservePercent=25 -XX:InitiatingHeapOccupancyPercent=30 -XX:SoftRefLRUPolicyMSPerMB=0 -XX:SurvivorRatio=8"

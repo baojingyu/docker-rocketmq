@@ -125,9 +125,12 @@ calculate_heap_sizes()
 calculate_heap_sizes
 
 # Dynamically calculate parameters, for reference.
-Xms=$MAX_HEAP_SIZE
-Xmx=$MAX_HEAP_SIZE
-Xmn=$HEAP_NEWSIZE
+#Xms=$MAX_HEAP_SIZE
+#Xmx=$MAX_HEAP_SIZE
+#Xmn=$HEAP_NEWSIZE
+Xms=128m
+Xmx=128m
+Xmn=128m
 # Set for `JAVA_OPT`.
 JAVA_OPT="${JAVA_OPT} -server -Xms${Xms} -Xmx${Xmx} -Xmn${Xmn}"
 JAVA_OPT="${JAVA_OPT} -XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection -XX:CMSInitiatingOccupancyFraction=70 -XX:+CMSParallelRemarkEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -XX:+CMSClassUnloadingEnabled -XX:SurvivorRatio=8  -XX:-UseParNewGC"
