@@ -43,7 +43,7 @@ services:
       - namesrv
     ports:
       - 11909:10909
-      - 20911:20911
+      - 11911:11911
       - 11912:10912
     environment:
       - NAMESRV_ADDR=namesrv:9876
@@ -65,7 +65,7 @@ services:
       - namesrv
     ports:
       - 12909:10909
-      - 12911:10911
+      - 12911:12911
       - 12912:10912
     environment:
       - NAMESRV_ADDR=namesrv:9876
@@ -87,7 +87,7 @@ services:
       - namesrv
     ports:
       - 13909:10909
-      - 20911:20911
+      - 13911:13911
       - 13912:10912
     environment:
       - NAMESRV_ADDR=namesrv:9876
