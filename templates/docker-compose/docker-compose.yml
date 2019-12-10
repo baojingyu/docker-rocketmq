@@ -42,9 +42,9 @@ services:
     links:
       - namesrv
     ports:
-      - 20909:10909
-      - 20911:10911
-      - 20912:10912
+      - 11909:10909
+      - 11911:10911
+      - 11912:10912
     environment:
       - NAMESRV_ADDR=namesrv:9876
     volumes:
@@ -64,9 +64,9 @@ services:
     links:
       - namesrv
     ports:
-      - 30909:10909
-      - 30911:10911
-      - 30912:10912
+      - 12909:10909
+      - 12911:10911
+      - 12912:10912
     environment:
       - NAMESRV_ADDR=namesrv:9876
     volumes:
@@ -86,9 +86,9 @@ services:
     links:
       - namesrv
     ports:
-      - 40909:10909
-      - 40911:10911
-      - 40912:10912
+      - 13909:10909
+      - 13911:10911
+      - 13912:10912
     environment:
       - NAMESRV_ADDR=namesrv:9876
     volumes:
@@ -110,7 +110,7 @@ services:
     ports:
       - 8090:8080
     environment:
-      JAVA_OPTS: "-Drocketmq.namesrv.addr=172.16.218.144:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
+      - JAVA_OPTS=-Drocketmq.namesrv.addr=172.16.218.144:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false
     command: sh -c java JAVA_OPTS -jar /app.jar
     networks:
       rocketmq:
